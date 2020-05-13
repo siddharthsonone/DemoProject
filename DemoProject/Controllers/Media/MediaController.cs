@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.IO;
 using DemoProject.Models;
 using Microsoft.AspNetCore.Mvc;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -9,16 +9,17 @@ namespace DemoProject
 {
     public class MediaController : Controller
     {
-        // GET: /<controller>/
+
 
         //NOT A CONTROLLER used to return JSON strings!
         private static string HelperMethodRandomString(int maxRange)
         {
-            var randomWords = new List<String> { "Random", "troubled", "yell", "month", "society", "milk", "solid", "grandmother", "vacuous", "petite", "cellar", "tawdry", "efuse", };
+            var randomWords = new List<String> { "random", "troubled", "yell", "month", "society", "milk", "solid", "grandmother", "vacuous", "petite", "cellar", "tawdry", "refuse", };
             Random rnd = new Random();
             return randomWords[rnd.Next(0, maxRange)];
         }
 
+        // /Media/RandomMovie
         public IActionResult RandomMovie()
         {
             Movies exampleMovie1 = new Movies("Kill Bill", "Action", "Quentin Tarantino", 180);
@@ -38,7 +39,7 @@ namespace DemoProject
 
 
         }
-        
+        // /Media/RandomSong
         public IActionResult RandomSong()
         {
             Songs exampleSong1 = new Songs("Summer of 69", "Rock", "Bryan Adams", 180);
@@ -56,18 +57,50 @@ namespace DemoProject
             //can use ViewResult
             return View(albums[rnd.Next(0, 3)]);
         }
+
+        // /Media/RandomText
         //used to return strings!
         public ContentResult RandomText()
         {
-            var randomWord = HelperMethodRandomString(11);
+            string randomWord = HelperMethodRandomString(11);
             return Content(randomWord);
         }
+
+        // /Media/RandomJSON
         //used to return JSON strings!
         public JsonResult RandomJSON()
         {
-            var randomWord = HelperMethodRandomString(11);
+            string randomWord = HelperMethodRandomString(11);
             var json_data = new { word = randomWord };
             return Json(json_data);
+        }
+        // /Media/RandomFile
+        //used to return a File!
+        public FileResult RandomFile()
+        {
+            //fileName
+            string name = "RandomFile.txt";
+            string randomWord = HelperMethodRandomString(11);
+
+            FileInfo info = new FileInfo(name);
+            if (!info.Exists)
+            {
+                using (StreamWriter writer = info.CreateText())
+                {
+                    writer.WriteLine("Hello, I am thinking about {0}", randomWord);
+
+                }
+            }
+
+            return File(info.OpenRead(), "text/plain");
+        }
+        // /Media/RedirectUser
+        //used to redirect 302!
+        public RedirectToActionResult RedirectUser()
+        {
+            //optional for query parameters
+            //new {page = 1, sortBy = "name"} 
+            return RedirectToAction("Index","Home");
         }
     }
 }
