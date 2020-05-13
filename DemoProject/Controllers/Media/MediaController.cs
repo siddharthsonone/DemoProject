@@ -11,6 +11,14 @@ namespace DemoProject
     {
         // GET: /<controller>/
 
+        //NOT A CONTROLLER used to return JSON strings!
+        private static string HelperMethodRandomString(int maxRange)
+        {
+            var randomWords = new List<String> { "Random", "troubled", "yell", "month", "society", "milk", "solid", "grandmother", "vacuous", "petite", "cellar", "tawdry", "efuse", };
+            Random rnd = new Random();
+            return randomWords[rnd.Next(0, maxRange)];
+        }
+
         public IActionResult RandomMovie()
         {
             Movies exampleMovie1 = new Movies("Kill Bill", "Action", "Quentin Tarantino", 180);
@@ -51,16 +59,14 @@ namespace DemoProject
         //used to return strings!
         public ContentResult RandomText()
         {
-            var randomWords = new List<String> { "Random", "troubled", "yell", "month", "society", "milk", "solid", "grandmother", "vacuous", "petite", "cellar", "tawdry", "efuse", };
-            Random rnd = new Random();
-            return Content(randomWords[rnd.Next(0, 11)]);
+            var randomWord = HelperMethodRandomString(11);
+            return Content(randomWord);
         }
         //used to return JSON strings!
         public JsonResult RandomJSON()
         {
-            var randomWords = new List<String> { "Random", "troubled", "yell", "month", "society", "milk", "solid", "grandmother", "vacuous", "petite", "cellar", "tawdry", "efuse", };
-            Random rnd = new Random();
-            var json_data = new { word = randomWords[rnd.Next(0, 11)] };
+            var randomWord = HelperMethodRandomString(11);
+            var json_data = new { word = randomWord };
             return Json(json_data);
         }
     }
