@@ -102,6 +102,14 @@ namespace DemoProject
             //new {page = 1, sortBy = "name"} 
             return RedirectToAction("Index","Home");
         }
+        // /Media/edit?id=473489
+        //parse query params
+        public ActionResult Edit(int id)
+        {
+            return Content("id=" +id);
+        }
+
+
     }
 }
 
