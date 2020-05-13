@@ -21,7 +21,7 @@ namespace DemoProject.Models
         //class constructor
         public Songs(string aTitle, string aGenre, string aArtist, int aLength)
         {
-            Console.WriteLine("Creating Class!");
+            
             title = aTitle;
             genre = aGenre;
             artist = aArtist;
@@ -29,9 +29,9 @@ namespace DemoProject.Models
             _count++;
 
         }
-        public static void getTotalSoundCount()
+        public static int getTotalSoundCount()
         {
-            Console.WriteLine("Total Count" + _count);
+            return _count;
         }
 
     }

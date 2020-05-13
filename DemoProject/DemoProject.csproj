@@ -30,7 +30,8 @@
     <Content Remove="Views\Movies\EmptyHtmlFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\Movies\" />
-    <Folder Include="Views\Movies\" />
+    <Folder Include="Controllers\Media\" />
+    <Folder Include="Views\Media\" />
+    <Folder Include="Models\Media\" />
   </ItemGroup>
 </Project>

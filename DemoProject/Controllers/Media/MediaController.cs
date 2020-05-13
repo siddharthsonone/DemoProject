@@ -7,13 +7,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DemoProject
 {
-    public class MoviesController : Controller
+    public class MediaController : Controller
     {
         // GET: /<controller>/
+
         public IActionResult RandomMovie()
         {
-            var randomMovie = new Movies() { Id = '1', Name = "Shrek" };
-            return View(randomMovie);
+            Movies exampleMovie1 = new Movies("Kill Bill", "Action", "Quentin Tarantino", 180);
+
+            Movies exampleMovie2 = new Movies("Hateful Eight", "Action", "Quentin Tarantino", 180);
+
+            Movies exampleMovie3 = new Movies("Kill Bill Vol 2", "Action", "Quentin Tarantino", 180);
+
+            Movies exampleMovie4 = new Movies("DeathProof", "Action", "Quentin Tarantino", 180);
+
+            List<Movies> albums = new List<Movies> { exampleMovie1, exampleMovie2, exampleMovie3, exampleMovie4 };
+
+            Random rnd = new Random();
+
+            return View(albums[rnd.Next(0, 3)]);
+
+
         }
         public IActionResult RandomSong()
         {
