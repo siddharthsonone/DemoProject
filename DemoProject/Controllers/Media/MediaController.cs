@@ -25,10 +25,12 @@ namespace DemoProject
 
             Random rnd = new Random();
 
+            //can use ViewResult
             return View(albums[rnd.Next(0, 3)]);
 
 
         }
+        
         public IActionResult RandomSong()
         {
             Songs exampleSong1 = new Songs("Summer of 69", "Rock", "Bryan Adams", 180);
@@ -43,8 +45,24 @@ namespace DemoProject
 
             Random rnd = new Random();
 
-
+            //can use ViewResult
             return View(albums[rnd.Next(0, 3)]);
+        }
+        //used to return strings!
+        public ContentResult RandomText()
+        {
+            var randomWords = new List<String> { "Random", "troubled", "yell", "month", "society", "milk", "solid", "grandmother", "vacuous", "petite", "cellar", "tawdry", "efuse", };
+            Random rnd = new Random();
+            return Content(randomWords[rnd.Next(0, 11)]);
+        }
+        //used to return JSON strings!
+        public JsonResult RandomJSON()
+        {
+            var randomWords = new List<String> { "Random", "troubled", "yell", "month", "society", "milk", "solid", "grandmother", "vacuous", "petite", "cellar", "tawdry", "efuse", };
+            Random rnd = new Random();
+            var json_data = new { word = randomWords[rnd.Next(0, 11)] };
+            return Json(json_data);
         }
     }
 }
+
