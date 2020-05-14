@@ -18,6 +18,11 @@ namespace DemoProject
             Random rnd = new Random();
             return randomWords[rnd.Next(0, maxRange)];
         }
+        // /Media
+        public IActionResult Index()
+        {
+            return View();
+        }
 
         // /Media/RandomMovie
         public IActionResult RandomMovie()
@@ -106,10 +111,41 @@ namespace DemoProject
         //parse query params
         public ActionResult Edit(int id)
         {
-            return Content("id=" +id);
+            return Content("id=" + id);
         }
 
+        // use attribute routing
+        // /Media/RandomWordNumber?id=473489&input="HelloWorld"
+        [Route("/Media/RandomWordNumber/{id}/{input}")]
+        public ContentResult RandomWordNumber(int id, string input)
+        {
+            return Content(id + input);
+        }
 
     }
 }
+//The following is called Conventional Routing
+/*
+
+In Conventional:
+example 1:https://localhost:5001/Media/RandomMovie
+            |           |                   |
+          SERVER  class MediaController  RandomMovie() METHOD in MediaController
+
+example 2:https://localhost:5001/Media/edit?id=1
+            |           |                   |
+          SERVER  class MediaController   edit(int id) METHOD in MediaController that takes an integer argument.
+
+routing is happening based upon the arrangment of controller(s) and not explicitly
+
+In Attribute Based:
+
+we mention
+[Route("/")]
+[Route("/Home")]
+[Route("/Home/Index")]
+public ActionResult Index()
+
+routing is happening based on explicit routes
+*/
 

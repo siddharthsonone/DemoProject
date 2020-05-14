@@ -1,187 +1,144 @@
-﻿It was just a burger. Why couldn't she understand that? She knew he'd completely changed his life around her eating habits, so why couldn't she give him a break this one time? She wasn't even supposed to have found out. Yes, he had promised her and yes, he had broken that promise, but still in his mind, all it had been was just a burger.
+﻿//info sbout middlewares
 
-It was a question of which of the two she preferred. On the one hand, the choice seemed simple. The more expensive one with a brand name would be the choice of most. It was the easy choice. The safe choice. But she wasn't sure she actually preferred it.
 
-I inadvertently went to See's Candy last week (I was in the mall looking for phone repair), and as it turns out, See's Candy now charges a dollar -- a full dollar -- for even the simplest of their wee confection offerings. I bought two chocolate lollipops and two chocolate-caramel-almond things. The total cost was four-something. I mean, the candies were tasty and all, but let's be real: A Snickers bar is fifty cents. After this dollar-per-candy revelation, I may not find myself wandering dreamily back into a See's Candy any time soon.
+Middleware in ASP.NET Core controls how our application responds to HTTP requests. It can also control how our application looks when there is an error, and it is a key piece in how we authenticate and authorize a user to perform specific actions.
 
-There were little things that she simply could not stand. The sound of someone tapping their nails on the table. A person chewing with their mouth open. Another human imposing themselves into her space. She couldn't stand any of these things, but none of them compared to the number one thing she couldn't stand which topped all of them combined.
+Middleware are software components that are assembled into an application pipeline to handle requests and responses.
 
-He had done everything right. There had been no mistakes throughout the entire process. It had been perfection and he knew it without a doubt, but the results still stared back at him with the fact that he had lost.
+Each component chooses whether to pass the request on to the next component in the pipeline, and can perform certain actions before and after the next component is invoked in the pipeline.
 
-It's always good to bring a slower friend with you on a hike. If you happen to come across bears, the whole group doesn't have to worry. Only the slowest in the group do. That was the lesson they were about to learn that day.
+Request delegates are used to build the request pipeline. The request delegates handle each HTTP request.
 
-Lorem ipsum dolor sit amet, nihil scripta debitis per ne, eros ridens nam ex, munere corpora adversarium per ad. Ne quas dolor diceret per, pri omnis eligendi appareat te, ridens everti qualisque ea vim. Mel ei stet iracundia sadipscing. Ut errem fabulas periculis est.
+Each piece of middleware in ASP.NET Core is an object, and each piece has a very specific, focused, and limited role.
 
-At laboramus deseruisse moderatius duo, usu ignota phaedrum adipiscing no. Pri ei omittantur accommodare. Aperiam officiis percipitur cu vix, eum iudico evertitur ullamcorper id, ea usu omnes audire impetus. Ea hinc principes eum, te pri dolorem nominavi scaevola, eam mutat alterum percipitur id.
+Ultimately, we need many pieces of middleware for an application to behave appropriately.
 
-Nec iusto animal inimicus ad, mediocrem constituto pri cu. Accumsan assentior constituam ut eos. Id etiam tamquam eam, ea graeco minimum sed, at accusam eleifend vix. His no tacimates deseruisse sadipscing, soleat tractatos sapientem eu usu, dicit decore ea vim. Eu nullam tempor salutatus vel, et appareat percipitur pro.
+Let us now assume that we want to log information about every request into our application.
 
-Sententiae eloquentiam mei an, laboramus intellegat deseruisse ei duo. At quo nemore placerat. Alienum delectus ius id. Quando iracundia intellegam eam et. Te usu propriae indoctum, eos ut vide iriure singulis, in pro populo vocent laboramus. Molestie senserit mediocritatem sit id.
+In that case, the first piece of middleware that we might install into the application is a logging component.
 
-An mel dolor quando. No persius accusam recusabo mei. Labitur detracto dissentiet usu id. Ei senserit deterruisset quo, in has cibo qualisque.
+This logger can see everything about the incoming request, but chances are a logger is simply going to record some information and then pass along this request to the next piece of middleware.
 
-Libris dolorum omittam cu nam. Sed mutat putent ea. Ei habeo ignota mel, no pri nostro similique, cum ei legimus perpetua elaboraret. Pro cu impetus complectitur. Et his quot nemore, cum mollis diceret no. Usu ut elit mazim dolores, eligendi explicari no mei.
+Middleware
+Middleware is a series of components present in this processing pipeline.
 
-Nam ad vivendum sententiae, cum id gubergren pertinacia. Appetere consulatu deseruisse ius ad. Et pro quis mundi munere, dictas euripidis ei vel. Facilis habemus no pri, has iuvaret euripidis ea. At qui possim splendide repudiandae, minim soluta voluptatum ex vim. Habeo adhuc an vix, mei no tale malorum laoreet, nam petentium corrumpit et.
+The next piece of middleware that we've installed into the application is an authorizer.
 
-Per no exerci dissentias. Viderer principes no vim, no per iudicabit disputando, amet errem ex sea. Duo at agam tantas. Vim idque quaeque constituam eu, est quis eius explicari no, eos vivendo officiis ex. Eum eu dicat consetetur accommodare, ad mei voluptatum sadipscing.
+An authorizer might be looking for specific cookie or access tokens in the HTTP headers.
 
-Pri mundi interesset ea. Nec sint putant referrentur ex, viderer platonem interpretaris in vis. Ei scripta albucius eos. Meis torquatos eam eu, sumo eros pri te. Hinc adhuc iuvaret an mel, his ad summo affert.
+If the authorizer finds a token, it allows the request to proceed. If not, perhaps the authorizer itself will respond to the request with an HTTP error code or redirect code to send the user to a login page.
 
-Oportere suscipiantur et sit, mutat noluisse te mei. Te vel movet postea propriae, quo adipisci dissentiunt contentiones ei, id vim habeo possit voluptatum. Cu eos esse tacimates volutpat, error bonorum lobortis cum no. Congue omittam vituperatoribus quo no, sale omnium luptatum an pri, usu te tollit petentium.
+But, otherwise, the authorizer will pass the request to the next piece of middleware which is a router.
 
-Illud mediocrem qui no, sit virtute quaeque ei. Ex fastidii qualisque duo, et quas graece torquatos sit. Eu mel eirmod lobortis mandamus. Ne ludus inermis ceteros his, usu an erat corpora partiendo. Justo latine aperiam per ex, at error eripuit adversarium pro. Ne sit errem elaboraret, nostrud mentitum ne mea, id usu eros hendrerit consequuntur.
+A router looks at the URL and determines your next step of action.
 
-In has ocurreret incorrupte. Sententiae cotidieque sea cu. Ludus urbanitas liberavisse sea et, vim an decore munere argumentum, enim magna atomorum sed in. Eam ex facete invidunt scripserit, veniam diceret iracundia ut ius. Nam at officiis pericula, sit salutandi corrumpit et. Ut per dictas oblique maiorum, no mutat iudicabit vix, ad probo vitae theophrastus pro.
+The router looks over the application for something to respond to and if the router doesn't find anything to respond to, the router itself might return a 404 Not Found error.
 
-Case velit clita eos te, debet oratio voluptatibus at sea. Nec veniam nostro at. Commodo scribentur voluptatibus ius ad, liber graece his an. Cu qui liber prodesset interpretaris, at lorem exerci inciderint vix, ei quando accusam persecuti vel. Prodesset incorrupte scriptorem ex vel. Delenit copiosae omittantur cu est, vim altera sanctus maluisset ea. Et sonet delectus reprehendunt vel, cum aeterno atomorum no.
+Example
+Let us now take a simple example to understand more about middleware. We set up the middleware in ASP.NET using the Configure method of our Startup class.
 
-Unum iuvaret et mei. Ne mei veniam menandri. Ad alterum civibus referrentur nec. Vim at pertinax molestiae posidonium, quo veri maiestatis deseruisse ut, an sea fastidii maluisset.
+using Microsoft.AspNet.Builder; 
+using Microsoft.AspNet.Hosting; 
+using Microsoft.AspNet.Http; 
 
-Duo et rebum vocibus ocurreret, mucius audiam mei no. Albucius eligendi laboramus est id, definiebas eloquentiam signiferumque vis ei. Eu duo quod moderatius, vim id malis nominati sapientem. His dico partem mandamus an, nec dico option incorrupte ad. Liber consectetuer et sea, cetero cotidieque pro ad, magna debet ex ius.
+using Microsoft.Extensions.DependencyInjection; 
+using Microsoft.Extensions.Configuration;  
 
-Pri eu copiosae pertinax, pro esse nostrum philosophia et. Mel at suscipit dissentias, ut elit prodesset qui, mundi urbanitas consetetur sea te. Mea molestie antiopam suavitate at. Dolores omittam ius at, per te percipit probatus. Eos modo liber tation in.
+namespace FirstAppDemo { 
+   public class Startup { 
+      public Startup() { 
+         var builder = new ConfigurationBuilder() 
+            .AddJsonFile("AppSettings.json"); 
+         Configuration = builder.Build(); 
+      }  
+      public IConfiguration Configuration { get; set; }  
+       
+      // This method gets called by the runtime. 
+      // Use this method to add services to the container. 
+      // For more information on how to configure your application, 
+      // visit http://go.microsoft.com/fwlink/?LinkID=398940 
+      public void ConfigureServices(IServiceCollection services) { 
+      }  
+      
+      // This method gets called by the runtime.  
+      // Use this method to configure the HTTP request pipeline. 
+      public void Configure(IApplicationBuilder app) { 
+         app.UseIISPlatformHandler();  
+         
+         app.Run(async (context) => { 
+            var msg = Configuration["message"]; 
+            await context.Response.WriteAsync(msg); 
+         });  
+      }  
+      // Entry point for the application. 
+      public static void Main(string[] args) => WebApplication.Run<Startup>(args); 
+   } 
+} 
+Inside the Configure() method, we will invoke the extension methods on the IApplicationBuilder interface to add middleware.
 
-Diam atomorum duo ei, tota nobis omnesque cu pro, et posse perpetua usu. Has recteque forensibus theophrastus ut. Ex pri malorum fuisset appetere. Ad mea wisi volutpat vituperatoribus, ad latine appetere molestiae vix, vel te dicam nonumy euripidis.
+There are two pieces of middleware in a new empty project by default −
 
-At pri consequat vulputate rationibus, in alii discere delicatissimi nam. Has malorum intellegat et. Dicit quaeque similique vim ut. Munere alterum utroque sea et, ius te alterum elaboraret.
+IISPlatformHandler
+Middleware registered with app.Run
+IISPlatformHandler
+IISPlatformHandler allows us to work with Windows authentication. It will look at every incoming request and see if there is any Windows identity information associated with that request and then it calls the next piece of middleware.
 
-Quo omnis ceteros deleniti ne. Oblique omnesque an vel, his mandamus mediocrem id. An usu nulla omnium. Id magna oporteat incorrupte usu. Mei ad ridens saperet. Ea cum nisl stet nostrum, at pri dicit soleat volumus, usu in eripuit invidunt.
+Middleware registered with app.Run
+The next piece of middleware in this case is a piece of middleware registered with app.Run. The Run method allows us to pass in another method, which we can use to process every single response. Run is not something that you will see very often, it is something that we call a terminal piece of middleware.
 
-Qui fugit oportere pericula ei. An nec nostrud saperet verterem. In nam saepe splendide temporibus, magna propriae vix eu. Magna civibus urbanitas at has, cu nec doctus mandamus. Invidunt urbanitas te mel, id dicam soleat labores usu.
+Middleware that you register with Run will never have the opportunity to call another piece of middleware, all it does is receive a request, and then it has to produce some sort of response.
 
-Essent verear nominavi eu sit, enim choro causae cu eum. Pro te quando labores, vis delectus aliquando ne, graeci officiis mea an. Sed ad saperet nominavi scribentur, est malorum assentior id. Reque tation cu cum, sea ei prompta equidem definitiones. No summo facete vim, legimus volumus eu eos. Voluptatibus concludaturque at duo. Quod essent mnesarchum ut pri, at dictas appareat maluisset vel.
+You also get access to a Response object and one of the things you can do with a Response object is to write a string.
 
-Eu inani detraxit vim, modo natum recteque in pri. Pro ad justo tamquam petentium, has odio delenit reprimique ne. Te accusam scaevola usu. Cum in purto atqui repudiandae, et duo facer virtute repudiare. Harum verear cum ei, sea ut graecis periculis, ei dolore legimus eos. Solet utroque invenire has ad, dolor ceteros praesent an eos.
+If you want to register another piece of middleware after app.Run, that piece of middleware would never be called because, again, Run is a terminal piece of middleware. It will never call into the next piece of middleware.
 
-Vix numquam similique quaerendum eu, ut diam essent has. Ne etiam lucilius qui, eu per lorem vivendum, eam possim accusata philosophia ne. Cu vis nostrum insolens maluisset, usu homero graeco eu. Aliquam volutpat sea ea, vix solum essent temporibus ad, id paulo delicata pro. Pro persecuti theophrastus ex.
+How to Add another Middleware
+Let us proceed with the following steps to add another middleware −
 
-Eu offendit prodesset quo. Explicari consequat cu has, cum ne lorem quidam, cu usu noster iisque sapientem. Nec ut offendit platonem, an vim natum debitis constituam. Pri epicurei suscipiantur an, pri ne diam hinc, has ea congue laoreet efficiantur. Per partem rationibus te, liber dicant facilisi ne vix, et labores reprimique eos.
+Step 1 − To add another middleware, right-click on project and select Manage NuGet Packages.
 
-Mei ei doming debitis salutandi. No veri eirmod mel, qualisque voluptatibus cu vis. Iusto tation veniam eos an. Ut per nostrum corrumpit. An sed admodum offendit incorrupte, at aperiri vivendum nominati vel, sed in omnis errem doming. Nec te falli possim, an iusto deleniti assentior mel.
+Step 2 − Search for Microsoft.aspnet.diagnostics that is actually ASP.NET Core middleware for exception handling, exception display pages, and diagnostics information. This particular package contains many different pieces of middleware that we can use.
 
-No dicam scripserit disputando pro, veniam putent eos te. Dolorum mediocrem evertitur ea sit, in diceret scripserit pri. Id lobortis consequat nec, eam legimus luptatum pertinacia ad. Vero choro cum ex, cum ei posse sapientem reprimique. Detraxit deserunt his ea, ne feugiat eloquentiam ius, et delicata moderatius accommodare sed. Ut sanctus consequuntur mediocritatem usu.
-
-Sea semper fabulas scripserit cu, duo ei malorum dolores adversarium. Mel nisl rebum appetere cu. Ea eos facilisis salutatus gloriatur. No labore dissentias vis. An sed volumus sententiae. Id pro quod melius persius.
-
-Hinc timeam no eos, mel ut albucius detraxit. Ex viderer maluisset urbanitas nec. Autem summo prodesset sed no, eu cum tale graecis. Solet maiestatis usu ut. Unum mandamus definiebas sit te, ut falli persius qui, voluptua luptatum mea cu. Exerci eruditi commune sed ut, purto sale assum eu eum, amet melius per cu.
-
-In qui malis labore, meis illum repudiare nam et. Ex ius iusto delicatissimi. An vim aperiam singulis tractatos, ex duo luptatum dissentiet. Vim porro munere scriptorem ei, ius cu ridens deterruisset, sit summo oratio cu. Erant honestatis eu sit. Ne nec primis constituto consequuntur.
-
-No omnes viderer duo, his falli ceteros perpetua ea, cibo sale sea ea. No liber appetere posidonium sit, commodo nonumes scribentur ea quo, mucius albucius principes vix cu. Per aeque atomorum forensibus et, eu eleifend repudiare has. Eos purto ullum aliquid id, id sit sonet oportere omittantur, ea insolens democritum eum. Est ex graeci tibique inciderint, duo porro commodo placerat in, zril assentior vim cu.
-
-Sumo habeo graeco eu has. Vim cu deserunt qualisque, has ea justo congue ocurreret, latine theophrastus at his. Ad quo soluta saperet, duis mucius delectus no sed. Id eam doctus scaevola, his no enim utroque.
-
-Per at rebum facete sententiae. Eros maiestatis voluptatibus quo ut, ne dicta tantas putent nec. Per eu wisi utamur, commune epicurei vel at. Nobis dolor ei quo.
-
-Usu magna exerci aliquam ea. Sed ad quem harum, at per vidit deseruisse. At tractatos argumentum est, principes similique tincidunt at nam. Inermis appareat vix an. Pri graece iuvaret euismod te, pri accusam pericula accommodare no, adhuc aperiam virtute ne vix. Ex ubique invidunt pri, ex nam odio sapientem, an menandri eloquentiam deterruisset eos.
-
-Nam ei indoctum neglegentur, atomorum expetendis signiferumque his an. Eum cu impedit forensibus. Tation ancillae ut sed. Vim ea bonorum comprehensam, ei mei solum exerci ubique, ne mel mazim nullam debitis. Ubique tibique fabellas usu an, solum tamquam intellegat pro ei, ex dico legere per. No graece maiorum qualisque nec, cu sit hinc dicunt veritus.
-
-Cu suas natum debitis mel, an causae saperet dissentiunt quo. Vis mazim omittantur no, vidit eleifend maiestatis vim ex, ad amet wisi inermis ius. Voluptua phaedrum forensibus usu at, modo posidonium comprehensam usu ea. Ad sit melius tritani, iisque contentiones te mei. Modus omittam petentium quo ex, at vix natum tempor molestie, alienum facilisi intellegebat sed cu. Molestie vulputate ex his, cu alii labores rationibus cum, semper persequeris ex sea.
-
-Graeci necessitatibus cu nec, per at nulla corpora laboramus. Qui te enim luptatum, et justo gloriatur cum, et sed nonumy molestiae voluptatibus. Te usu aeque ponderum, et minim affert oportere mea. Sit in malis graeco utroque. Quo id veritus accumsan periculis, fabulas instructior sea ut. Mazim contentiones at duo, nec impetus dignissim referrentur eu, ei vel denique accommodare.
-
-No reque habemus his. Mea nonumy vivendum democritum an. Vim eius officiis inciderint te, at sea quando sanctus. Mea id appetere repudiare, no molestie conclusionemque usu. Pro eu fugit dignissim. Id ius nominati voluptaria, debitis hendrerit definiebas eu eos.
-
-Eam euripidis scribentur adversarium ad. Eam id munere voluptua. Postea offendit pri ex, usu odio dicam tractatos at. Eam eirmod iriure et, id mundi conclusionemque pro, labore consectetuer pri ad. Vim id erant veritus consulatu, wisi atomorum eum ne. Nam quod homero id, maiorum placerat ei cum.
-
-Numquam phaedrum nominati ex eum, mea harum graeci ex, aliquip voluptaria intellegam an qui. Sed eu option nonumes luptatum, ea ignota electram salutandi mea. Ut has aeque equidem inimicus. Vel an nostro reprimique, eu vim salutatus dissentiet.
-
-Eu assum quodsi voluptaria nam, mel erant vivendum intellegat ut, cu partem volumus partiendo his. Consul latine in vix, eu vide oporteat adolescens eos. Debet dissentias ex pri. Ne tota veri theophrastus qui. Esse vocibus scripserit eu cum, ius ex evertitur prodesset constituam, modo adipisci qualisque pro no. Eos ex debet primis explicari, ne commodo laboramus sed, eam ne veri meis.
-
-Ei detracto mnesarchum sea, wisi assentior eu eum. Ea veniam copiosae instructior sed. Vis dolorum laoreet et, has at nobis tantas scripta. An his oratio facete, nam id efficiendi theophrastus. Has fuisset epicurei no. Inani mucius eleifend his ex, impetus disputando est an, reque urbanitas vis at.
-
-Eos cu copiosae recteque convenire, has no omnis molestiae repudiandae, nec simul tibique ponderum te. Usu veniam semper malorum ut. Ne mazim oportere quaerendum eam. Illum dolor has et, ne cum graeci tincidunt. Et ferri labore vis, cum ut legere honestatis appellantur. Nec et errem laboramus temporibus.
-
-Ut has clita dicam, cu pri legere corpora, no quot postea vim. Ex mel fugit lucilius efficiendi. Malorum laoreet et vis, pro ea utroque scribentur. Mea fugit utroque te. Aperiam recusabo maiestatis no est, an vim doming pertinax referrentur.
-
-Nam ex debitis detracto sadipscing. Iriure ornatus menandri id quo. Nec nisl adhuc consul cu, eleifend interesset ut duo. Ei vix oportere euripidis. Ad quo munere vituperata, nam ex mutat forensibus, eu magna incorrupte vis. Quando disputando eum in.
-
-Ius eu vitae senserit. Ut per quaeque debitis comprehensam. Nusquam scripserit vix an, ad putant prompta eam. Nam in agam scripserit. Et harum regione scribentur est, nostro reprimique referrentur sed ad.
-
-Sit id iusto apeirian eloquentiam, qui unum fuisset at, affert menandri eu usu. Munere nullam cu qui. Nec minim ponderum cu. Id fabulas erroribus efficiantur mea, ne qui mandamus torquatos vituperatoribus. Quis velit feugait eu sea, justo disputando conclusionemque eu pro.
-
-Duo disputando adversarium et. Nam ex eruditi sententiae interpretaris, decore detracto adipiscing mel id. Per noluisse luptatum an, eos at augue minimum singulis. In nec odio doming legendos, ad eum errem aliquid conclusionemque, an eum ornatus suavitate. Falli dissentiet dissentiunt duo an, cu ius augue inani, eu convenire molestiae per. Corpora offendit eum ne, sea ea sumo labores commune.
-
-Malis vivendum philosophia ei duo, illud affert deterruisset id per. No nibh volumus cum, sit utamur phaedrum an. Nec te aliquid postulant intellegebat, mel no inani nostro. Eam at convenire maluisset. Affert omnesque eligendi sed ei. Eos malis verear deterruisset eu, ei tacimates percipitur honestatis vix.
-
-Oratio volumus mnesarchum mel ex. Ne quando timeam urbanitas duo, pri nominavi praesent intellegam in. Mea impetus omittam mediocritatem no. Qui at labitur oportere, no audiam conceptam scriptorem nec. Debet copiosae cu his, id tritani legimus vix, has ne error legendos reprimique.
-
-Vel volumus qualisque ad. Ut essent apeirian qui, ut mea cibo dignissim intellegam, ut pri dico affert liberavisse. Ad facer laboramus vim, timeam mediocritatem eos et. Nec at iudico diceret imperdiet, vix cu probo consulatu. Per ei soluta lobortis, ius eu accusata suavitate.
-
-Sanctus percipitur ad mei. Vel et aliquip meliore voluptatum. Sea id ullum appellantur, putent impetus prompta ad sit, ad mel habeo omittantur. Id errem affert eum, an usu decore ubique.
-
-Liber iusto an nec. Quaeque vituperatoribus at qui, in repudiare iracundia nam. Vel invenire voluptatum in, regione nominavi disputationi cu vix, menandri recusabo eu duo. Viris lobortis mel ei, novum salutandi ad nam, quaeque debitis in pro.
-
-Ea pro commodo fierent probatus, utinam mediocritatem ad pro. Illum primis gloriatur an mei, an iisque latine interesset per. An alia movet vim, ne duo probo efficiendi delicatissimi. Ea nec alii omnes appellantur. In mel esse accusam erroribus, sea vidit inimicus salutandi eu. Dicta verear ne quo, eu eam alienum noluisse voluptatum, diam unum labitur at mea.
-
-Iudicabit evertitur id his, nec id ludus altera. Cu vivendum neglegentur nec. At laudem postea noluisse pri, cum ea volumus noluisse. Ad nec corpora lobortis. Sea exerci principes gloriatur te. An quo suas tibique omnesque, ex vidit altera iracundia nec, ut eam amet voluptaria.
-
-Tollit accommodare interpretaris ei sit. Tollit recusabo pri ne, aeque quaeque aliquid nam ei, has unum sensibus moderatius no. Modo antiopam pericula vel cu, at decore pertinacia vel. Eum te idque gubergren, duo ne aperiri alterum convenire, eos cu dico laoreet reprimique. Et vim nisl alterum, eum cu alii eirmod.
-
-No quo commodo regione hendrerit, suas voluptatum ad mei. Comprehensam signiferumque vix id. Errem corrumpit interpretaris ut vim. At feugait dignissim scribentur mei, sea dolor vivendo id. In mel atqui congue, enim cotidieque sed eu. Te verear verterem vix.
-
-Vis tota reque quidam et, hinc volutpat ne est. Eum falli periculis cu, cu unum movet erroribus nam, nec tota putent repudiandae at. Vix in novum congue impetus, vim eu intellegat mediocritatem. Vix an ignota labore nominavi, alia esse maiestatis quo eu, vix at unum albucius intellegebat. Ne per eius honestatis disputando. Mei ad aeque petentium, ne meliore ceteros eos.
-
-Qui natum urbanitas consectetuer no, eius partem ius ei. Partem tibique mei an, ad sea duis nostro feugait, semper gloriatur et pri. Ridens viderer dissentias cu pri, fabulas repudiare liberavisse ex sed. Fabulas civibus qualisque ad nec, mea id insolens tractatos. Te mel illud disputationi, et quando fastidii adipisci qui, eos ex autem nostrum. Scaevola vivendum eum no, semper lobortis conceptam id sea.
-
-Reque errem disputationi ius ne, vis tritani labores in. Audiam vocibus forensibus ad mea, eos idque aperiam electram ea. Pro et mentitum dissentiet conclusionemque, no graeci malorum mnesarchum sea, usu ei everti oporteat. Erat prompta invidunt vim eu. Ex vide omnes graece eos, eam ea soluta veritus epicurei, dicat propriae has ne.
-
-Sit hendrerit adolescens ex, pri ea errem affert. Cum ex consul diceret theophrastus, soluta vidisse oportere ad est, an ius fabulas aliquando. An sed viderer iuvaret dignissim, vel no quis prima petentium. Pri id novum instructior, errem dicam detraxit pro cu. Eum eu wisi vivendum, ne pertinax petentium his.
-
-Per at liber latine mentitum, dicam consequat eos an. Lorem recteque cu has, ex pri nihil altera menandri, pri sint posse feugait id. An eos dicant discere disputando, cu nam elitr invenire. Id sed decore partiendo aliquando, at mel hinc semper aliquip. Duis scaevola ad mel.
-
-Esse volutpat ad pro, mea delenit corrumpit in. Elitr oblique ornatus has ad, choro option ea cum, usu ancillae pericula accusamus ei. Sed illud euismod invenire ea, cu quis vivendum torquatos mel. Justo laoreet est te, id cum partiendo inciderint. Ne mel putent maiorum, quas dicit vituperatoribus cu per.
-
-In qui quis euripidis cotidieque. Sed mollis accumsan et, epicurei intellegebat quo no. No mea congue aliquid, quo at unum movet torquatos. Eu nam alii movet praesent, eum et omnesque euripidis.
-
-Movet vulputate ei duo, ad voluptua eloquentiam eos, an eam graecis detracto assentior. Vix tantas dissentias definitiones ea. Nullam populo sententiae an cum. Doming salutandi sed cu. Pri nihil propriae ne, mei congue soleat tamquam id, regione fuisset honestatis ne sit. Unum erroribus consetetur id eum, id paulo altera vix.
-
-Verterem deserunt vix ei. Iriure voluptatibus usu at, in mel tation graeci impetus. Et vim falli nonumy inermis, cu dictas delectus vim. An ponderum facilisis sea, et modus facilisi usu.
-
-Nihil pertinax mea ad, justo choro denique qui cu, in illum tritani commune mei. Et nam libris consetetur constituam. Nec in partem possit, ea esse vidit tractatos mel. Pri consulatu dignissim honestatis ne. Iisque dolores adversarium mei ne. Cu pri ipsum quaeque evertitur, sonet labores oportere vel id, mei quot movet iisque an.
-
-Forensibus consectetuer in eos, in vitae bonorum eruditi mel. Cu eam unum patrioque, quo te magna mutat audire. Numquam vituperatoribus sit ex, eam ut mollis oportere rationibus, his placerat dignissim reprehendunt id. Regione inermis ius cu, eu sed augue invidunt. Eum ea affert tation, per atqui solet ad. Justo aeque reformidans usu ne, eros nullam verear vel ne.
-
-Nam nemore bonorum ne, est ubique aliquam necessitatibus id, invidunt moderatius cu mea. Est exerci munere altera eu, mea ea suas intellegam. Duo eius deleniti mediocrem no, in eam essent cetero. Cum vivendo voluptatum ea.
-
-Nobis minimum mel eu, cu quo congue copiosae, mel essent putant ea. Ut duo esse modus scriptorem, mei id justo eruditi alienum, nemore omnesque senserit ex eum. Populo convenire delicatissimi cu mel, legendos omittantur vim in, cu usu similique vituperata. Ex ludus iudico delenit nec, quo ea prima audiam, cu audire dolores dissentias his. In prima laudem ius. Ex quidam corpora his.
-
-Te primis commodo temporibus quo. Ei eum sint dicta, qui an erat fierent probatus, eos ne menandri democritum. Ea ludus oblique concludaturque nec, duo et error posidonium. Ut has mundi temporibus, ea putent placerat mei. Mandamus tractatos no has, facete eirmod omittantur ad mea, ei labore malorum praesent eum.
-
-Iusto accusam repudiare has id, no enim mollis vix. Liber dolores deleniti eos eu, laoreet placerat delicata et eum. Nibh adhuc lorem ei sed, quo nulla facilisis ad. Ei stet persius nam. Eu paulo scaevola volutpat sea, sed harum latine ad.
-
-Atqui corrumpit eam no, eu dicat habemus adipiscing duo. Dicta choro ne vim, est ludus admodum imperdiet cu, sit saepe menandri interesset eu. Inani maiestatis voluptatum mea ei, aperiri vivendo comprehensam ei nam. Et vis doming mediocrem, postulant concludaturque eu nec. Qui ad dolore libris facilis. Vidisse probatus accommodare usu ut, mei et audire impedit forensibus. Eu eam iisque insolens, repudiare expetendis sea ex.
-
-Cum ut tantas alterum. Usu feugiat repudiandae consectetuer ea. No alii labitur constituto nec, ne has inermis repudiare, libris quaestio sit at. Dicta diceret qui ad, omittam intellegat mel ut. Ad pri simul deserunt cotidieque, summo debitis appellantur et quo. An salutandi complectitur pro, ea bonorum deleniti mea, qui no alia illud.
-
-Ridens aliquip reprehendunt no pri. Ad mea quot aliquando intellegebat. Ne vel adhuc noster lucilius. Quod delicata sea an. Nostrud salutandi ea mel.
-
-Has sale facilisi gubergren cu, simul labore salutatus sed ei. Vix solum legimus assentior id. Ex has summo ceteros mnesarchum, te sea dicit voluptaria. Facete numquam vulputate ea mel, et vel nobis nostrud epicurei, justo dicant no has. Semper suscipiantur duo ad, has quod putent viderer ad, ius affert epicuri ad. Id sed sapientem philosophia, blandit interesset nec an. Est in vocibus theophrastus, eum ad utinam omnium.
-
-Vel an postulant repudiandae suscipiantur, nam graeci antiopam id, per assum quaerendum id. Ex his nullam persequeris dissentiunt, erant exerci indoctum cum id. Sea semper mollis vivendum ex. Cum homero nonumes ex, dico singulis in qui. Erant honestatis eu duo.
-
-Quodsi petentium consetetur vix in, modus iracundia sadipscing nam in, ut dicant indoctum nec. Ut porro numquam eam. Ne decore complectitur vis. Pro cibo vocent quaestio te.
-
-Ius te iisque aliquam delicatissimi. Propriae theophrastus eum ut. Eum eu mutat senserit reprimique, his an tempor diceret mediocritatem, usu salutandi theophrastus ad. Te pro augue intellegam, ei sint dicunt cum.
-
-Inermis graecis ut vim. Eos putant numquam eruditi te. Minimum maiestatis ullamcorper ut vel, mel nonumes appetere sensibus in, sed in iusto decore volutpat. Pri te brute omnesque principes. Mea modo prodesset ei, nam te cibo scaevola, an augue aperiam commune his. Eos eu essent consequuntur. Minimum argumentum has cu.
-
-Pro ut debet detraxit antiopam, ex eum wisi harum. Te vocent eruditi argumentum eos, justo eligendi at sed, at affert decore graece mei. Accumsan assentior duo at, id mundi quidam ius, iriure temporibus comprehensam ne vis. Mel movet adolescens ne, munere mucius constituam nam in, no consul denique argumentum per.
-
-Eu error errem eum, omnes mucius sea ad, convenire expetendis per cu. Vim in facer facete molestie. Autem gubergren dissentiunt in nam, zril nostrud ei vix, nulla labore at eum. Nam et eruditi laoreet splendide, movet disputationi in pri.
-
-An per clita saperet scriptorem. Eu tale option vel. Erat lorem in vim, congue munere consulatu cu mei. Autem bonorum mnesarchum an duo. Mel cu graece animal delicatissimi, quo vitae soleat eruditi te. Dolore suscipit definitiones usu et, ius stet salutatus ea, erant accusamus tincidunt ex per.
-
-Eros fuisset at pri. Vix an fastidii hendrerit inciderint, hinc wisi officiis eum ad, ex possit cetero praesent est. Te est malis consul scriptorem, ei has illum assentior. Usu ea modo malis saepe, epicurei insolens persecuti no vim. Cu nec esse appetere disputando, wisi argumentum intellegebat an sea. An vim novum inermis consulatu, in minim quaestio mediocrem mei, ad fierent nominati assentior vel.
-
-Illud laudem nullam eu cum, et modus verterem vim. Mucius blandit tacimates in usu, cu autem ludus referrentur vix, fugit partiendo reprimique qui in. Ne has antiopam postulant repudiare, senserit reprimique comprehensam an sea, mea an aliquid molestie lucilius. At quo mutat exerci invenire, eos ei illud elitr molestiae. Dicat imperdiet quo ut. Mei ei suavitate conceptam, pro vide quidam et, sed ne splendide posidonium.
-
-Est eirmod appellantur ex. Nec facer adolescens dissentiet no. Ne eum minim expetenda. Ex vivendo tibique mel. Cum in essent maiestatis, usu ea hinc tation qualisque. Eu ludus prodesset vim. Has oportere maiestatis ea.
-
-Reque deleniti an mea. Eam primis molestie te. Ex veri omnes duo, cum vivendo civibus liberavisse ne. Ut usu graeci comprehensam, feugait laboramus honestatis usu eu.
-
-Ne per aeque dicit phaedrum. Ne convenire definiebas reformidans eum, ei facer laudem graeci cum. Tota primis his in. Vix at facete detracto consetetur, sit no eirmod consectetuer. Vim te noster mentitum accusata.
-
-Tantas labitur sanctus te vim, his ex laudem veritus. Eos no purto putant. Duo no option democritum, sit nibh tation utroque ex, id.
+Microsoft AspNet Diagnostics
+Step 3 − Install that package if it is not installed in your project.
+
+Step 4 − Let us now go to the Configure() method and invoke app.UseWelcomePage middleware.
+
+// This method gets called by the runtime.  
+// Use this method to configure the HTTP request pipeline. 
+public void Configure(IApplicationBuilder app) { 
+   app.UseIISPlatformHandler(); 
+   app.UseWelcomePage();  
+   
+   app.Run(async (context) => { 
+      var msg = Configuration["message"]; 
+      await context.Response.WriteAsync(msg); 
+   });  
+}
+Step 5 − Run your application and you will see the following welcome screen.
+
+Welcome Screen
+This Welcome screen might not be as useful.
+
+Step 6 − Let us try something else that might be a little more useful. Instead of using the Welcome page, we will use the RuntimeInfoPage.
+
+// This method gets called by the runtime.  
+// Use this method to configure the HTTP request pipeline. 
+public void Configure(IApplicationBuilder app) { 
+   app.UseIISPlatformHandler(); 
+   app.UseRuntimeInfoPage();  
+   
+   app.Run(async (context) => { 
+      var msg = Configuration["message"]; 
+      await context.Response.WriteAsync(msg); 
+   });  
+}
+Step 7 − Save your Startup.cs page and refresh your browser and you will see the following page.
+
+Startup CS
+This RuntimeInfoPage is a middleware that will only respond to requests that come in for a specific URL. If the incoming request does not match that URL, this piece of middleware just lets the request pass through to the next piece of middleware. The request will pass through the IISPlatformHandler middleware, then go to the UseRuntimeInfoPage middleware. It is not going to create a response, So it will go to our app.Run and display the string.
+
+Step 8 − Let us add “/runtimeinfo” at the end of your URL. You will now see a page that is produced by that runtime info page middleware.
+
+Runtime Information
+You will now see a response that gives you some information about your runtime environment such as the Operating System, runtime version, architecture, type and all the packages that you are using etc.
