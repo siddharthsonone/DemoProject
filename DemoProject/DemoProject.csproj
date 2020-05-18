@@ -42,5 +42,7 @@
     <Folder Include="Controllers\Media\" />
     <Folder Include="Views\Media\" />
     <Folder Include="Models\Media\" />
+    <Folder Include="Pages\" />
+    <Folder Include="Pages\BookList\" />
   </ItemGroup>
 </Project>
