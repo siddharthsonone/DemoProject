@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DemoProject
 {
+
     public class MediaController : Controller
     {
 
@@ -105,7 +106,7 @@ namespace DemoProject
         {
             //optional for query parameters
             //new {page = 1, sortBy = "name"} 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
         // /Media/edit?id=473489
         //parse query params
