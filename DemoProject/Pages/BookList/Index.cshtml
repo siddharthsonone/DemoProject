@@ -9,6 +9,7 @@
     ViewData["Title"] = "Books";
 }
 <br />
+
 <div class="container row p-0 m-0">
     <div class="col-10">
         <h2 class="text-info"> Book List</h2>
@@ -53,7 +54,7 @@
                         </td>
 
                         <td>
-                            <button asp-page-handler="Delete" asp-route-id="@item.Key" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
+                            <a asp-page="DeletePage" asp-route-id="@item.Key" class="btn btn-danger btn-sm">Delete</a>
                             <a asp-page="EditPage" asp-route-id="@item.Key" class="btn btn-success btn-sm text-white">Edit</a>
                         </td>
                     </tr>
