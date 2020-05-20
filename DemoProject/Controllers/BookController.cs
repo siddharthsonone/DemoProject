@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Linq;
 using DemoProject.Data;
 using DemoProject.Models;
@@ -30,5 +31,17 @@ namespace DemoProject.Controllers
             var data = _db.Book.ToList();
             return Json(new { data = data });
         }
+
+        [HttpGet]
+        [Route("Delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            var book = _db.Book.Find(id);
+            _db.Book.Remove(book);
+            _db.SaveChanges();
+            return RedirectToPage("Index");
+        }
+
+
     }
 }
