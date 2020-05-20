@@ -14,6 +14,7 @@ namespace DemoProject.Data
         {
         }
         public DbSet<Book> Book { get; set; }
+        public DbSet<Test> Test { get; set; }
     }
 }
 
