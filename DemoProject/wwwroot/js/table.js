@@ -25,7 +25,7 @@ function loadDataTable() {
                         </a>
                         &nbsp;
                         <a class='btn btn-danger text-white' style='cursor:pointer; width:70px;'
-                            href=/api/Book/Delete/${data}>
+                            href=/BookList/DeletePage?id=${data}>
                             Delete
                         </a>
                         </div>`;

@@ -32,15 +32,7 @@ namespace DemoProject.Controllers
             return Json(new { data = data });
         }
 
-        [HttpGet]
-        [Route("Delete/{id}")]
-        public IActionResult Delete(int id)
-        {
-            var book = _db.Book.Find(id);
-            _db.Book.Remove(book);
-            _db.SaveChanges();
-            return RedirectToPage("Index");
-        }
+
 
 
     }
