@@ -1,0 +1,101 @@
+﻿@model IEnumerable<DemoProject.Models.Test>
+
+<br />
+
+<div class="container row p-0 m-0">
+    <div class="col-10">
+        <h2 class="text-info"> Test Suite</h2>
+    </div>
+    <div class="col-2">
+        <a asp-action="EditCreate" class="btn btn-info form-control">Create TestCase</a>
+    </div>
+
+    <div class="col-12 border p-3 mt-3">
+        <form method="post"></form>
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>
+                        <label>@Html.DisplayNameFor(model => model.Id)</label>
+                    </th>
+                    <th>
+                        <label>@Html.DisplayNameFor(model => model.Feature)</label>
+                    </th>
+                    <th>
+                        <label>@Html.DisplayNameFor(model => model.TestCase)</label>
+                    </th>
+                    <th>
+                        <label>@Html.DisplayNameFor(model => model.Expected)</label>
+                    </th>
+                    <th>
+                        <label>@Html.DisplayNameFor(model => model.Observed)</label>
+                    </th>
+                    <th>
+                        <label>@Html.DisplayNameFor(model => model.Result)</label>
+                    </th>
+                    <th>
+                        <label>@Html.DisplayNameFor(model => model.LastExecuted)</label>
+                    </th>
+                    <th>
+                        <label>@Html.DisplayNameFor(model => model.Notes)</label>
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.Id)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(m => item.Feature)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(m => item.TestCase)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(m => item.Expected)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(m => item.Observed)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(m => item.Result)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.LastExecuted)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(m => item.Notes)
+                        </td>
+
+
+
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                            <a asp-action="EditCreate" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Edit</a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        }
+        else
+        {
+            <p>No Books Found!</p>
+        }
+    </div>
+</div>
+
+
+

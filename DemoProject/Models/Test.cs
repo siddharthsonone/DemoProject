@@ -15,7 +15,7 @@ namespace DemoProject.Models
         public string Expected { get; set; }
         public string Observed { get; set; }
         public string Result { get; set; }
-        public DateTime LastExecuted { get; set; }
+        public string LastExecuted { get; set; }
         public string Notes { get; set; }
     }
 }

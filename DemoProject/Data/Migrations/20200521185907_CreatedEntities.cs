@@ -1,12 +1,26 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DemoProject.Data.Migrations
 {
-    public partial class addTest : Migration
+    public partial class CreatedEntities : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Book",
+                columns: table => new
+                {
+                    Key = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: false),
+                    Author = table.Column<string>(nullable: true),
+                    ISBN = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Book", x => x.Key);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Test",
                 columns: table => new
@@ -18,7 +32,7 @@ namespace DemoProject.Data.Migrations
                     Expected = table.Column<string>(nullable: true),
                     Observed = table.Column<string>(nullable: true),
                     Result = table.Column<string>(nullable: true),
-                    LastExecuted = table.Column<DateTime>(nullable: false),
+                    LastExecuted = table.Column<string>(nullable: true),
                     Notes = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -29,6 +43,9 @@ namespace DemoProject.Data.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Book");
+
             migrationBuilder.DropTable(
                 name: "Test");
         }

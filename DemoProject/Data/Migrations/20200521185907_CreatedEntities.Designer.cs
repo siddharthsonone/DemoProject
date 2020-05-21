@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemoProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200520191118_addTest")]
-    partial class addTest
+    [Migration("20200521185907_CreatedEntities")]
+    partial class CreatedEntities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,7 +52,7 @@ namespace DemoProject.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("LastExecuted")
+                    b.Property<string>("LastExecuted")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Notes")

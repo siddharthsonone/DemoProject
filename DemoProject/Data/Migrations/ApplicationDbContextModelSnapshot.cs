@@ -50,7 +50,7 @@ namespace DemoProject.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("LastExecuted")
+                    b.Property<string>("LastExecuted")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Notes")
